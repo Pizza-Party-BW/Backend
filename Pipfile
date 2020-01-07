@@ -14,8 +14,12 @@ django-cors-headers = "*"
 gunicorn = "*"
 django-heroku = "*"
 django-rest-api = "*"
+psycopg2 = "==2.8.4"
 
 [dev-packages]
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+generate = "python ./util/create_world.py"
