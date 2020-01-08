@@ -1,0 +1,4 @@
+('Sewer Tunnel', 'A dank and cold place. There’s not much to see here.')
+('Community Garden','Climbing out of the sewer, you find yourself next to a vacant lot that has been transformed into a community garden. There is a hand-painted sign by the front gate that reads “Please Don’t Pick The Produce.”')
+('Italian Restaurant', 'You crawl out of the sewer into a dark street. The streetlights are out, but you spot a warm glow coming from the windows of an Italian restaurant. Down a side alley and past the dumpsters, you see that the back door to the kitchen is propped open. Jackpot.')
+('Manhole Chamber', 'You enter a chamber with a ladder that leads to the surface. Clutching each grimy, slippery step iron, you climb to the top. You strain to push the manhole cover, but the lid doesn’t budge. Someone must be parked on top. You must go back the way you came.')
