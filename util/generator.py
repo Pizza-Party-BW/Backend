@@ -9,14 +9,10 @@ class Map:
         self.height = 0
 
     def __repr__(self):
-        str = '--' * (self.width - 1)
+        str = '__' * (self.width - 1)
         str += '\n'
-        # print(self.grid)
-        print(self.width, self.height)
         for y in range(self.height - 1, 0, -1):
-            print('test')
             for x in range(0, self.width - 1):
-                print('test')
                 # if self.grid[x][y].w_to == 0: str += '|'
                 # else: str += ' '
                 # if self.grid[x][y].n_to == 0: str += '-'
@@ -84,5 +80,5 @@ class Map:
 
 
 map = Map()
-map.generate_map(10, 10)
+map.generate_map(50, 10)
 print(map)
