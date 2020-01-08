@@ -70,7 +70,7 @@ def move(request):
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Room
-        fields = ('title', 'description', "n_to", "s_to", "e_to", "w_to") 
+        fields = ('title', 'description', 'n_to', 's_to', 'e_to', 'w_to') 
         # eventually need to add id, x, y to rooms model
     
 class RoomViewSet(viewsets.ModelViewSet):
