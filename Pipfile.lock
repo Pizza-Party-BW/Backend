@@ -1,11 +1,7 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
-            "sha256": "d7d568d133d75adae1afe303b4b660193336ffaacb62de7a52d075d6442812ea"
-=======
-            "sha256": "03ff5653347f93c0d0ea49ad22733957f82ece057d06920d523bd4fedb05b707"
->>>>>>> fae44c2296e65dd054fd51d80365dfdc7619e5f3
+            "sha256": "7902b898b2124e17f0c36ab09badd98856496560a7ebdb8107793bf6a6960b3b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -117,10 +113,7 @@
                 "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
                 "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"
             ],
-<<<<<<< HEAD
-=======
             "index": "pypi",
->>>>>>> fae44c2296e65dd054fd51d80365dfdc7619e5f3
             "version": "==0.5.0"
         },
         "django": {
@@ -223,8 +216,7 @@
                 "sha256:ef6df7e14698e79c59c7ee7cf94cd62e5b869db369ed4b1b8f7b729ea825712a",
                 "sha256:f898e5cc0a662a9e12bde6f931263a1bbd350cfb18e1d5336a12927851825bb6"
             ],
-<<<<<<< HEAD
-=======
+            "index": "pypi",
             "version": "==2.8.4"
         },
         "psycopg2-binary": {
@@ -262,7 +254,6 @@
                 "sha256:eac8a3499754790187bb00574ab980df13e754777d346f85e0ff6df929bcd964",
                 "sha256:eaed1c65f461a959284649e37b5051224f4db6ebdc84e40b5e65f2986f101a08"
             ],
->>>>>>> fae44c2296e65dd054fd51d80365dfdc7619e5f3
             "index": "pypi",
             "version": "==2.8.4"
         },
@@ -381,10 +372,7 @@
                 "sha256:0f9137f74bd95fa54329ace88d8dc695fbe895369a632e35f7a136e003e41d73",
                 "sha256:62556265ec1011bd87113fb81b7516f52688887b7a010ee899ff1fd18fd22700"
             ],
-<<<<<<< HEAD
-=======
             "index": "pypi",
->>>>>>> fae44c2296e65dd054fd51d80365dfdc7619e5f3
             "version": "==5.0.1"
         }
     },
