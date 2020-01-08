@@ -1,11 +1,33 @@
-from adventure.models import Room
+# from adventure.models import Room
 import random
+
 
 class Map:
     def __init__(self):
         self.grid = []
         self.width = 0
         self.height = 0
+
+    def __repr__(self):
+        str = '--' * (self.width - 1)
+        str += '\n'
+        # print(self.grid)
+        print(self.width, self.height)
+        for y in range(self.height - 1, 0, -1):
+            print('test')
+            for x in range(0, self.width - 1):
+                print('test')
+                # if self.grid[x][y].w_to == 0: str += '|'
+                # else: str += ' '
+                # if self.grid[x][y].n_to == 0: str += '-'
+                # else: str += ' '
+                if x < 1: str += '|'
+                if self.grid[x][y].s_to == 0: str += '_'
+                else: str += ' '
+                if self.grid[x][y].e_to == 0: str += '|'
+                else: str += ' '
+            str += '\n'
+        return str
 
     def connected(self, room):
         connected = False
@@ -32,6 +54,8 @@ class Map:
 
     def generate_map(self, width, height):
         if width < 1 or height < 1: return False
+        from adventure.models import Room
+        import random
         self.width = width
         self.height = height
         self.grid = [[Room(x=x, y=y) for y in range(self.height)] for x in range(self.width)]
@@ -58,3 +82,7 @@ class Map:
             current = next
             nv += 1
 
+
+map = Map()
+map.generate_map(10, 10)
+print(map)
