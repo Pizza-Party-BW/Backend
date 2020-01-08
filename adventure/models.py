@@ -12,6 +12,12 @@ class Room(models.Model):
     s_to = models.IntegerField(default=0)
     e_to = models.IntegerField(default=0)
     w_to = models.IntegerField(default=0)
+    x = models.IntegerField(default=0)
+    y = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'Room x:{self.x} y:{self.y} n_to:{True if self.n_to else False} s_to:{True if self.s_to else False} w_to:{True if self.w_to else False} e_to:{True if self.e_to else False}'
+
     def connectRooms(self, destinationRoom, direction):
         destinationRoomID = destinationRoom.id
         try:
