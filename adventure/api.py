@@ -8,6 +8,11 @@ from .models import *
 from rest_framework.decorators import api_view
 import json
 
+# ============ for rooms endpoint ============ 
+from rest_framework import serializers, viewsets
+from .models import Room
+# ============================================
+
 # instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
 
@@ -32,7 +37,7 @@ def move(request):
     player_id = player.id
     player_uuid = player.uuid
     data = request.data
-    # data = json.loads(request.body)
+    #data = json.loads(request.body)
     direction = data['direction']
     room = player.room()
     nextRoomID = None
@@ -60,6 +65,27 @@ def move(request):
         players = room.playerNames(player_id)
         return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
 
+
+# ============ expose rooms model for rooms endpoint ============ 
+class RoomSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Room
+        fields = ('title', 'description', 'n_to', 's_to', 'e_to', 'w_to') 
+        # eventually need to add id, x, y to rooms model
+    
+class RoomViewSet(viewsets.ModelViewSet):
+    serializer_class = RoomSerializer
+    queryset = Room.objects.none()
+
+    # filters view for user
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_anonymous:
+            return Room.objects.none()
+        else:
+            return Room.objects.all()
+
+# ============================================
 
 @csrf_exempt
 @api_view(["POST"])

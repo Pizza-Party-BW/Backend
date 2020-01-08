@@ -23,6 +23,3 @@ whitenoise = "*"
 
 [requires]
 python_version = "3.7"
-
-[scripts]
-generate = "python ./util/create_world.py"
