@@ -9,18 +9,14 @@ class Map:
         self.height = 0
 
     def __repr__(self):
-        str = '__' * (self.width - 1)
+        str = '__' * self.width
         str += '\n'
-        for y in range(self.height - 1, 0, -1):
-            for x in range(0, self.width - 1):
-                # if self.grid[x][y].w_to == 0: str += '|'
-                # else: str += ' '
-                # if self.grid[x][y].n_to == 0: str += '-'
-                # else: str += ' '
+        for y in range(self.height - 1, -1, -1):
+            for x in range(0, self.width):
                 if x < 1: str += '|'
-                if self.grid[x][y].s_to == 0: str += '_'
+                if not self.grid[x][y].s_to: str += '_'
                 else: str += ' '
-                if self.grid[x][y].e_to == 0: str += '|'
+                if not self.grid[x][y].e_to: str += '|'
                 else: str += ' '
             str += '\n'
         return str
@@ -52,12 +48,15 @@ class Map:
         if width < 1 or height < 1: return False
         from adventure.models import Room
         import random
+        Room.objects.all().delete()
         self.width = width
         self.height = height
         self.grid = [[Room(x=x, y=y) for y in range(self.height)] for x in range(self.width)]
-        # self.grid = [None] * (self.width - 1)
-        # for x in range(0, self.width): # fill out the height for every x position, giving you an x,y schema
-        #     self.grid[x] = [Room()] * (self.height - 1)
+        room = None
+        for x in range(0, self.width):
+            for y in range(0, self.height):
+                room = self.grid[x][y]
+                if room: room.save()
         n = self.width * self.height
         # random starting place
         ix, iy = random.randrange(0, self.width - 1), random.randrange(0, self.height - 1)
@@ -70,15 +69,14 @@ class Map:
             if not neighbors:
                 current = room_stack.pop()
                 continue
-
             direction, next = random.choice(neighbors)
-            setattr(current, f'{direction}_to', next)
-            setattr(next, f'{reverse_direction[direction]}_to', current)
+            current.connectRooms(next, direction)
+            next.connectRooms(current, reverse_direction[direction])
             room_stack.append(current)
             current = next
             nv += 1
 
 
 map = Map()
-map.generate_map(50, 10)
+map.generate_map(10, 10)
 print(map)
