@@ -8,10 +8,9 @@ class MapWorld:
         self.width = 0
         self.height = 0
 
-    def __repr__(self):
+    def __str__(self):
         s = '__' * self.width
         s += '\n'
-        # print(self.grid)
         for y in range(self.height - 1, -1, -1):
             for x in range(0, self.width):
                 if x < 1:
