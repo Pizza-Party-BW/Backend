@@ -11,6 +11,7 @@ class Map:
     def __repr__(self):
         str = '__' * self.width
         str += '\n'
+        print(self.grid)
         for y in range(self.height - 1, -1, -1):
             for x in range(0, self.width):
                 if x < 1: str += '|'
@@ -44,10 +45,42 @@ class Map:
                     neighbors.append((direction, neighbor))
         return neighbors
 
+    def get_directions_str(self, room):
+        dirs = []
+        output = ''
+        if room.n_to: dirs.append('north')
+        if room.s_to: dirs.append('south')
+        if room.w_to: dirs.append('west')
+        if room.e_to: dirs.append('east')
+        for x in range(0, len(dirs)):
+            if x == len(dirs) - 1:
+                output += f'and {dirs[x]}.'
+            else: output += f'{dirs[x]}, '
+        return output
+
+    def generate_description(self, room, unique=False, descriptions=[]):
+        import random
+        from util.descriptions import variants, dead_end
+        if unique and len(descriptions):
+            t, d = descriptions.pop(random.randrange(0, len(descriptions)))
+            room.title = t
+            room.description = d
+            room.save()
+        elif unique:
+            room.title = 'Dead End'
+            room.description = dead_end
+            room.save()
+        else:
+            selections = random.sample(variants, 3)
+            room.title = 'Sewer Passageway'
+            room.description = f'{selections[0]} {selections[1]} {selections[2]} Tunnels continue {self.get_directions_str(room)}'
+            room.save()
+
     def generate_map(self, width, height):
         if width < 1 or height < 1: return False
         from adventure.models import Room
         import random
+        from util.descriptions import descriptions
         Room.objects.all().delete()
         self.width = width
         self.height = height
@@ -64,16 +97,23 @@ class Map:
         current = self.grid[ix][iy]
         nv = 1
         reverse_direction = {'n': 's', 's': 'n', 'w': 'e', 'e': 'w'}
+        backtracked = False
         while nv < n:
             neighbors = self.find_neighbors(current)
             if not neighbors:
+                if len(descriptions) and not backtracked: self.generate_description(current, True, descriptions)
+                else: self.generate_description(current)
                 current = room_stack.pop()
+                backtracked = True
                 continue
-            direction, next = random.choice(neighbors)
-            current.connectRooms(next, direction)
-            next.connectRooms(current, reverse_direction[direction])
+            backtracked = False
+            direction, next_room = random.choice(neighbors)
+            current.connectRooms(next_room, direction)
+            next_room.connectRooms(current, reverse_direction[direction])
+            # setup title and description
+            self.generate_description(current)  # other params are defaulted
             room_stack.append(current)
-            current = next
+            current = next_room
             nv += 1
 
 

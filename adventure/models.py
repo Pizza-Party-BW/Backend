@@ -6,8 +6,8 @@ from rest_framework.authtoken.models import Token
 import uuid
 
 class Room(models.Model):
-    title = models.CharField(max_length=50, default="DEFAULT TITLE")
-    description = models.CharField(max_length=500, default="DEFAULT DESCRIPTION")
+    title = models.CharField(max_length=50, default="Passage")
+    description = models.CharField(max_length=500, default="An empty passage.")
     n_to = models.IntegerField(default=0)
     s_to = models.IntegerField(default=0)
     e_to = models.IntegerField(default=0)
@@ -16,7 +16,7 @@ class Room(models.Model):
     y = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'Room x:{self.x} y:{self.y} n_to:{True if self.n_to else False} s_to:{True if self.s_to else False} w_to:{True if self.w_to else False} e_to:{True if self.e_to else False}'
+        return f'Room x:{self.x} y:{self.y} title:{self.title} description:{self.description}'
 
     def connectRooms(self, destinationRoom, direction):
         destinationRoomID = destinationRoom.id
