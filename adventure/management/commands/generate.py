@@ -36,9 +36,9 @@ class MapWorld:
 
     def find_neighbors(self, room):
         delta = [('w', (-1, 0)),
-                 ('e', (1, 0)),
-                 ('s', (0, -1)),
-                 ('n', (0, 1))
+                ('e', (1, 0)),
+                ('s', (0, -1)),
+                ('n', (0, 1))
                 ]
         neighbors = []
         for direction, (dx, dy) in delta:
@@ -145,3 +145,7 @@ class MapWorld:
             current = next_room
             nv += 1
 
+
+new_map = MapWorld()
+new_map.generate_map(10, 10)
+print(new_map)
