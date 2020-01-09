@@ -53,7 +53,7 @@ curl -X GET -H 'Authorization: Token cc504e88ef659843b858d61c101ca9d4f0edf979' h
 | id | primary key | auto-incrementing room ID |
 | title | string | Title of the room |
 | description | string | Description of the room |
-| x | integer | x coordinate of room, with map starting at (0,0) in top left  |
+| x | integer | x coordinate of room, with map starting at (0,0) at bottom left  |
 | y | integer | y coordinate of room |
 | n_to | integer | ID of room to the north. Defaults to 0 (no connection) |
 | s_to | integer | ID of room to the south. Defaults to 0 (no connection) |
