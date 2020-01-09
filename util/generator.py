@@ -1,14 +1,11 @@
 from adventure.models import Player, Room
 import random
-
-
 class MapWorld:
     def __init__(self):
         self.grid = []
         self.width = 0
         self.height = 0
-
-    def __str__(self):
+    def __repr__(self):
         s = '__' * self.width
         s += '\n'
         for y in range(self.height - 1, -1, -1):
@@ -25,30 +22,17 @@ class MapWorld:
                     s += ' '
             s += '\n'
         return s
-
     def connected(self, room):
-        connected = False
-        if room.n_to: connected = True
-        if room.s_to: connected = True
-        if room.w_to: connected = True
-        if room.e_to: connected = True
-        return connected
-
-    def find_neighbors(self, room):
-        delta = [('w', (-1, 0)),
-                 ('e', (1, 0)),
-                 ('s', (0, -1)),
-                 ('n', (0, 1))
-                ]
-        neighbors = []
-        for direction, (dx, dy) in delta:
-            x2, y2 = room.x + dx, room.y + dy
-            if (0 <= x2 < self.width) and (0 <= y2 < self.height):
-                neighbor = self.grid[x2][y2]
-                if not self.connected(neighbor):
-                    neighbors.append((direction, neighbor))
-        return neighbors
-
+        conn = False
+        if room.n_to:
+            conn = True
+        if room.s_to:
+            conn = True
+        if room.w_to:
+            conn = True
+        if room.e_to:
+            conn = True
+        return conn
     def get_directions_str(self, room):
         dirs = []
         output = ''
@@ -66,7 +50,6 @@ class MapWorld:
             else:
                 output += f'{dirs[x]}, '
         return output
-
     def generate_description(self, room, unique=False, descriptions=[]):
         import random
         from util.descriptions import variants, dead_end
@@ -85,7 +68,6 @@ class MapWorld:
             room.description = f'{selections[0]} {selections[1]} {selections[2]}'
             room.description += f' Tunnels continue {self.get_directions_str(room)} '
             room.save()
-
     def find_neighbors(self, room):
         delta = [('w', (-1, 0)),
                  ('e', (1, 0)),
@@ -100,7 +82,6 @@ class MapWorld:
                 if not self.connected(neighbor):
                     neighbors.append((direction, neighbor))
         return neighbors
-
     def generate_map(self, width, height):
         if width < 1 or height < 1:
             return False
@@ -144,4 +125,3 @@ class MapWorld:
             room_stack.append(current)
             current = next_room
             nv += 1
-
