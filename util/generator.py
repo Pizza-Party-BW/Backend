@@ -27,7 +27,6 @@ class MapWorld:
         return s
 
     def connected(self, room):
-<<<<<<< HEAD
         connected = False
         if room.n_to: connected = True
         if room.s_to: connected = True
@@ -37,9 +36,9 @@ class MapWorld:
 
     def find_neighbors(self, room):
         delta = [('w', (-1, 0)),
-                ('e', (1, 0)),
-                ('s', (0, -1)),
-                ('n', (0, 1))
+                 ('e', (1, 0)),
+                 ('s', (0, -1)),
+                 ('n', (0, 1))
                 ]
         neighbors = []
         for direction, (dx, dy) in delta:
@@ -49,18 +48,6 @@ class MapWorld:
                 if not self.connected(neighbor):
                     neighbors.append((direction, neighbor))
         return neighbors
-=======
-        conn = False
-        if room.n_to:
-            conn = True
-        if room.s_to:
-            conn = True
-        if room.w_to:
-            conn = True
-        if room.e_to:
-            conn = True
-        return conn
->>>>>>> 87607891990ace28878f46ab171d234530b410c8
 
     def get_directions_str(self, room):
         dirs = []
@@ -162,3 +149,7 @@ class MapWorld:
 new_map = MapWorld()
 new_map.generate_map(10, 10)
 print(new_map)
+players = Player.objects.all()	
+for p in players:	
+    p.currentRoom = new_map.grid[0][0].id	
+    p.save()
