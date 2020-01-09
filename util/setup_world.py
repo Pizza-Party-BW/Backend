@@ -3,6 +3,10 @@ from adventure.models import Player
 
 new_map = MapWorld()
 new_map.generate_map(10, 10)
+for x in range(0, new_map.grid):
+    for y in range(0, new_map.grid[x]):
+        room = new_map.grid[x][y]
+        room.save()
 print(new_map)
 players = Player.objects.all()
 for p in players:
