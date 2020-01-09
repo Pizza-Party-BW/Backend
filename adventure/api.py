@@ -73,7 +73,7 @@ class RoomSerializer(serializers.ModelSerializer):
         fields = ('id','title', 'description', 'x', 'y', 'n_to', 's_to', 'e_to', 'w_to') 
         # eventually need to add id, x, y to rooms model
     
-class RoomViewSet(viewsets.ReadOnlyModelViewset):
+class RoomViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = RoomSerializer
     queryset = Room.objects.none()
 
