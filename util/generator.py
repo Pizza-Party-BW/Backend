@@ -1,4 +1,4 @@
-# from adventure.models import Room
+from adventure.models import Player
 import random
 
 
@@ -120,3 +120,8 @@ class Map:
 map = Map()
 map.generate_map(10, 10)
 print(map)
+players = Player.objects.all()
+for p in players:
+  p.currentRoom = map.grid[0][0].id
+  p.save()
+
