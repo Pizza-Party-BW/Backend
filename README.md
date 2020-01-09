@@ -22,19 +22,19 @@ Backend for Pizza Party, an interactive ***Multi-User Dungeon (MUD)*** client pr
 
 ### Example Requests
 
-* Register
+Register
     curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password1":"testpassword", "password2":"testpassword"}' http://pizza-party-bw.herokuapp.com/api/registration/
 
-* Login
+Login
     curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser", "password":"testpassword"}' http://pizza-party-bw.herokuapp.com/api/login/
 
-* Initialize (Replace token string with logged in user's auth token)
+Initialize (Replace token string with logged in user's auth token)
     curl -X GET -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' http://pizza-party-bw.herokuapp.com/api/adv/init/
 
-* Move (Replace token string with logged in user's auth token)
+Move (Replace token string with logged in user's auth token)
     curl -X POST -H 'Authorization: Token 6b7b9d0f33bd76e75b0a52433f268d3037e42e66' -H "Content-Type: application/json" -d '{"direction":"n"} http://pizza-party-bw.herokuapp.com/api/adv/move/
 
-* Get Rooms (Replace token string with logged in user's auth token)
+Get Rooms (Replace token string with logged in user's auth token)
     curl -X GET -H 'Authorization: Token cc504e88ef659843b858d61c101ca9d4f0edf979' http://pizza-party-bw.herokuapp.com/api/adv/move/
 
 
