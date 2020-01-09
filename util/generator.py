@@ -144,4 +144,4 @@ class MapWorld:
             room_stack.append(current)
             current = next_room
             nv += 1
-
+            
