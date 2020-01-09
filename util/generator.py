@@ -119,11 +119,11 @@ class Map:
             nv += 1
 
 
-map = Map()
-map.generate_map(10, 10)
-print(map)
+new_map = Map()
+new_map.generate_map(10, 10)
+print(new_map)
 players = Player.objects.all()
 for p in players:
-    p.currentRoom = map.grid[0][0].id
+    p.currentRoom = new_map.grid[0][0].id
     p.save()
 
