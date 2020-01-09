@@ -2,7 +2,7 @@ from adventure.models import Player
 import random
 
 
-class Map:
+class MapWorld:
     def __init__(self):
         self.grid = []
         self.width = 0
@@ -119,7 +119,7 @@ class Map:
             nv += 1
 
 
-new_map = Map()
+new_map = MapWorld()
 new_map.generate_map(10, 10)
 print(new_map)
 players = Player.objects.all()
