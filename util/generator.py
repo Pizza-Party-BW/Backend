@@ -101,8 +101,10 @@ class Map:
         while nv < n:
             neighbors = self.find_neighbors(current)
             if not neighbors:
-                if len(descriptions) and not backtracked: self.generate_description(current, True, descriptions)
-                else: self.generate_description(current)
+                if len(descriptions) and not backtracked:
+                    self.generate_description(current, True, descriptions)
+                else:
+                    self.generate_description(current)
                 current = room_stack.pop()
                 backtracked = True
                 continue
@@ -122,6 +124,6 @@ map.generate_map(10, 10)
 print(map)
 players = Player.objects.all()
 for p in players:
-  p.currentRoom = map.grid[0][0].id
-  p.save()
+    p.currentRoom = map.grid[0][0].id
+    p.save()
 
