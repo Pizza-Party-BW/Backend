@@ -7,7 +7,7 @@ for x in range(0, len(new_map.grid)):
     for y in range(0, len(new_map.grid[x])):
         room = new_map.grid[x][y]
         room.save()
-print(new_map)
+
 players = Player.objects.all()
 for p in players:
     p.currentRoom = new_map.grid[0][0].id
