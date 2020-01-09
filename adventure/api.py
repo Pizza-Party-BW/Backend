@@ -67,13 +67,13 @@ def move(request):
 
 
 # ============ expose rooms model for rooms endpoint ============ 
-class RoomSerializer(serializers.HyperlinkedModelSerializer):
+class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = ('id','title', 'description', 'x', 'y', 'n_to', 's_to', 'e_to', 'w_to') 
         # eventually need to add id, x, y to rooms model
     
-class RoomViewSet(viewsets.ModelViewSet):
+class RoomViewSet(viewsets.ReadOnlyModelViewset):
     serializer_class = RoomSerializer
     queryset = Room.objects.none()
 
