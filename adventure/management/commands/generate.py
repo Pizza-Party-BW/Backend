@@ -1,6 +1,8 @@
 from adventure.models import Player, Room
 import random
 
+from django.core.management.base import BaseCommand, CommandError
+from polls.models import Question as Poll
 
 class MapWorld:
     def __init__(self):
@@ -145,7 +147,13 @@ class MapWorld:
             current = next_room
             nv += 1
 
-
-new_map = MapWorld()
-new_map.generate_map(10, 10)
-print(new_map)
+class Command(BaseCommand):
+    help = 'generates rooms'
+    def handle(self, *args, **options):
+        new_map = MapWorld()
+        new_map.generate_map(10, 10)
+        print(new_map)
+        players = Player.objects.all()	
+        for p in players:	
+            p.currentRoom = new_map.grid[0][0].id	
+            p.save()
